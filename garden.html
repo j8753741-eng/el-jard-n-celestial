@@ -56,6 +56,34 @@ p{
     to{transform:translateY(-10vh); opacity:0;}
 }
 
+    .tree{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(4, 60px);
+    gap:15px;
+    justify-content:center;
+}
+
+.leaf{
+    font-size:40px;
+    cursor:pointer;
+    transition:0.3s;
+    filter:drop-shadow(0 0 5px gold);
+}
+
+.leaf:hover{
+    transform:scale(1.3);
+}
+
+#memoryBox{
+    margin-top:25px;
+    padding:15px;
+    border:1px solid gold;
+    border-radius:15px;
+    min-height:60px;
+    color:#ffd700;
+    max-width:400px;
+}
 </style>
 
 </head>
@@ -65,34 +93,48 @@ p{
 <div class="floating" id="particles"></div>
 
 <div class="center">
+<div class="center">
 
-    <h1>Bienvenida al Jardín Celestial</h1>
+    <h1>El Árbol de nuestros recuerdos</h1>
 
-    <p>
-        Aquí comienza el lugar donde el tiempo se detiene,
-        donde los recuerdos florecen
-        y donde tú eres la razón de todo.
-    </p>
+    <p>Haz clic en cada hoja para recordar nuestro camino 🌙</p>
+
+    <div class="tree">
+
+        <div class="leaf" onclick="showMemory('1')">🍃</div>
+        <div class="leaf" onclick="showMemory('2')">🍃</div>
+        <div class="leaf" onclick="showMemory('3')">🍃</div>
+        <div class="leaf" onclick="showMemory('4')">🍃</div>
+        <div class="leaf" onclick="showMemory('5')">🍃</div>
+        <div class="leaf" onclick="showMemory('6')">🍃</div>
+        <div class="leaf" onclick="showMemory('7')">🍃</div>
+        <div class="leaf" onclick="showMemory('8')">🍃</div>
+
+    </div>
+
+    <div id="memoryBox"></div>
 
 </div>
 
 <script>
 
-const container = document.getElementById("particles");
+function showMemory(id){
 
-for(let i=0;i<40;i++){
+    const memories = {
+        1: "Mes 1: Cuando todo empezó a sentirse especial contigo 💜",
+        2: "Mes 2: Descubrimos que hablar contigo era mi parte favorita del día 🌙",
+        3: "Mes 3: Ya no eras solo alguien… eras mi persona ✨",
+        4: "Mes 4: Cada momento contigo empezaba a sentirse hogar 🏡",
+        5: "Mes 5: Me di cuenta de que te elegía sin pensarlo 💫",
+        6: "Mes 6: Ya eras parte de mis planes sin darte cuenta 🌸",
+        7: "Mes 7: El amor contigo dejó de ser duda y se volvió certeza 💛",
+        8: "Mes 8: Y aquí estamos… construyendo algo que quiero para siempre 🌌"
+    };
 
-    const p = document.createElement("div");
-    p.classList.add("particle");
+    document.getElementById("memoryBox").innerText = memories[id];
 
-    p.style.left = Math.random()*100 + "vw";
-    p.style.animationDuration = (3 + Math.random()*5) + "s";
-    p.style.opacity = Math.random();
-
-    container.appendChild(p);
 }
 
-</script>
-
+        </script>
 </body>
 </html>
