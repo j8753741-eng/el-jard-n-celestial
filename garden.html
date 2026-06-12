@@ -746,5 +746,45 @@ rotateTimeMessage();
     <img id="lightboxImg">
 
 </div>
+    <script>
+
+/* ===== VISOR DEL SANTUARIO ===== */
+
+function openLightbox(src){
+
+    const lightbox = document.getElementById("lightbox");
+    const img = document.getElementById("lightboxImg");
+
+    img.src = src;
+
+    lightbox.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+}
+
+function closeLightbox(){
+
+    const lightbox = document.getElementById("lightbox");
+
+    lightbox.classList.remove("active");
+
+    document.body.style.overflow = "auto";
+
+}
+
+/* Cerrar tocando fuera de la imagen */
+
+document.getElementById("lightbox").addEventListener("click", function(e){
+
+    if(e.target === this){
+
+        closeLightbox();
+
+    }
+
+});
+
+        </script>
 </body>
 </html>
