@@ -390,7 +390,23 @@ h1,p{
     color:white;
     cursor:pointer;
 }
-    
+
+    /* ===== DESPEDIDA FINAL ===== */
+
+.goodbye-message{
+    text-align:center;
+    margin:80px auto 40px;
+    max-width:600px;
+    color:#ffd700;
+    font-size:20px;
+    line-height:2;
+    min-height:120px;
+    padding:20px;
+}
+
+.goodbye-message span{
+    color:#c9a7ff;
+}
 </style>
 
 </head>
@@ -805,7 +821,9 @@ rotateTimeMessage();
         8 meses construyendo nuestro para siempre.
 
     </div>
-
+<div class="goodbye-message"
+     id="goodbyeMessage">
+</div>
 </div>
 
 
@@ -862,11 +880,25 @@ document.getElementById("lightbox").addEventListener("click", function(e){
 function toggleLatidos(){
 
     const gallery = document.getElementById("latidosGallery");
+    const btn = document.querySelector(".latidos-btn");
 
     gallery.classList.toggle("show");
 
     if(gallery.classList.contains("show")){
+
         cargarLatidos();
+
+        btn.innerText = "💕 Ocultar Nuestros 56 Latidos";
+
+        gallery.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    }else{
+
+        btn.innerText = "💞 Abrir Nuestros 56 Latidos";
+
     }
 
 }
@@ -955,6 +987,63 @@ const latidos = [
     });
 
     }
+        /* ===== DESPEDIDA DEL JARDÍN ===== */
+
+const goodbyeText =
+`🌙 Gracias por recorrer este jardín conmigo.
+
+💜 Este siempre será tu hogar.
+
+✨ Y recuerda:
+
+Si el universo me concediera infinitas vidas,
+en cada una de ellas volvería a encontrarte,
+volvería a elegirte,
+y volvería a amarte.
+
+Con todo mi amor,
+
+Juan.`;
+
+function escribirDespedida(){
+
+    const box = document.getElementById("goodbyeMessage");
+
+    if(!box || box.dataset.done === "true"){
+        return;
+    }
+
+    box.dataset.done = "true";
+
+    let i = 0;
+
+    function escribir(){
+
+        if(i < goodbyeText.length){
+
+            box.innerHTML += goodbyeText.charAt(i) === "\n"
+                ? "<br>"
+                : goodbyeText.charAt(i);
+
+            i++;
+
+            setTimeout(escribir, 45);
+
+        }
+
+    }
+
+    escribir();
+
+}
+
+/* Activa la despedida al llegar al final */
+
+window.addEventListener("load", function(){
+
+    setTimeout(escribirDespedida, 3000);
+
+});
         </script>
 </body>
 </html>
