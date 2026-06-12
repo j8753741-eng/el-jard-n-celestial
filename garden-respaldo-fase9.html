@@ -1,1 +1,790 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Jardín Celestial - Fase 3</title>
 
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    background: radial-gradient(circle at top, #1a0b2e, #000);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* título */
+h1,p{
+    text-align:center;
+}
+
+/* árbol */
+.tree{
+    display:grid;
+    grid-template-columns:repeat(4,70px);
+    gap:15px;
+    justify-content:center;
+    margin-top:40px;
+}
+
+.leaf{
+    font-size:42px;
+    cursor:pointer;
+    transition:0.3s;
+    filter:drop-shadow(0 0 6px gold);
+}
+
+.leaf:hover{
+    transform:scale(1.3);
+}
+
+/* caja de texto */
+#memoryBox{
+    margin-top:30px;
+    text-align:center;
+    color:#ffd700;
+    max-width:420px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:10px;
+    min-height:60px;
+}
+
+    .lake{
+    width:200px;
+    height:200px;
+    margin:30px auto;
+    border-radius:50%;
+    background: radial-gradient(circle, #0a0a1a, #000);
+    border:2px solid gold;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.ripple{
+    position:absolute;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    border:2px solid gold;
+    animation:ripple 1.2s ease-out forwards;
+}
+
+@keyframes ripple{
+    from{transform:scale(1); opacity:1;}
+    to{transform:scale(10); opacity:0;}
+}
+
+#wishBox{
+    text-align:center;
+    margin-top:20px;
+    color:#ffd700;
+    min-height:40px;
+}
+    .flowers{
+    display:grid;
+    grid-template-columns:repeat(4,60px);
+    gap:15px;
+    justify-content:center;
+    margin-top:30px;
+}
+
+.flowers div{
+    font-size:40px;
+    cursor:pointer;
+    transition:0.3s;
+    filter:drop-shadow(0 0 6px #ffccff);
+}
+
+.flowers div:hover{
+    transform:scale(1.3) rotate(10deg);
+}
+
+#flowerBox{
+    margin-top:20px;
+    text-align:center;
+    color:#ffd700;
+    min-height:40px;
+    max-width:420px;
+    margin-left:auto;
+    margin-right:auto;
+}
+    #sky{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+/* mariposa */
+.butterfly{
+    position:absolute;
+    font-size:24px;
+    animation:fly 12s linear infinite;
+    opacity:0.7;
+}
+
+@keyframes fly{
+    0%{
+        transform:translateY(100vh) translateX(0);
+    }
+    50%{
+        transform:translateY(50vh) translateX(40px);
+    }
+    100%{
+        transform:translateY(-10vh) translateX(-20px);
+    }
+}
+    .stars-section{
+    margin-top:80px;
+    text-align:center;
+    padding:20px;
+}
+
+#stars{
+    position:relative;
+    height:200px;
+    margin-top:20px;
+    overflow:hidden;
+}
+
+/* estrella */
+.star{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 3s infinite ease-in-out;
+    opacity:0.7;
+}
+
+@keyframes twinkle{
+    0%{opacity:0.2; transform:scale(1);}
+    50%{opacity:1; transform:scale(1.5);}
+    100%{opacity:0.2; transform:scale(1);}
+}
+
+.final-message{
+    margin-top:30px;
+    color:#ffd700;
+    font-size:18px;
+    max-width:420px;
+    margin-left:auto;
+    margin-right:auto;
+}
+    .time-section{
+    margin-top:80px;
+    text-align:center;
+    padding:20px;
+}
+
+.clock{
+    font-size:28px;
+    color:#ffd700;
+    border:2px solid gold;
+    display:inline-block;
+    padding:10px 20px;
+    border-radius:15px;
+    margin-top:20px;
+    animation:glowClock 3s infinite alternate;
+}
+
+@keyframes glowClock{
+    from{box-shadow:0 0 5px gold;}
+    to{box-shadow:0 0 20px gold;}
+}
+
+#timeMessage{
+    margin-top:20px;
+    color:#c9a7ff;
+    max-width:400px;
+    margin-left:auto;
+    margin-right:auto;
+}
+    /* ===== FASE 9 ===== */
+
+.heart-transition{
+    text-align:center;
+    padding:80px 20px;
+    animation:fadeIn 2s ease;
+}
+
+.heart-transition h2{
+    color:#ffd700;
+    font-size:32px;
+    margin-bottom:20px;
+    text-shadow:0 0 15px gold;
+}
+
+.heart-transition p{
+    color:#c9a7ff;
+    max-width:500px;
+    margin:15px auto;
+    line-height:1.8;
+}
+
+.sanctuary{
+    padding:60px 20px;
+    text-align:center;
+}
+
+.sanctuary h2{
+    color:#ffd700;
+    font-size:30px;
+    text-shadow:0 0 12px gold;
+}
+
+.sanctuary-subtitle{
+    color:#c9a7ff;
+    max-width:500px;
+    margin:20px auto 40px;
+    line-height:1.8;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.gallery{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+    margin:30px auto;
+    max-width:900px;
+}
+
+.gallery img{
+    width:160px;
+    height:160px;
+    object-fit:cover;
+    border-radius:18px;
+    border:3px solid gold;
+    cursor:pointer;
+    transition:0.4s;
+    box-shadow:0 0 15px rgba(255,215,0,0.4);
+}
+
+.gallery img:hover{
+    transform:scale(1.08);
+}
+
+.section-title{
+    color:#ffd700;
+    margin-top:50px;
+}
+
+.section-text{
+    color:#c9a7ff;
+    max-width:500px;
+    margin:15px auto 30px;
+    line-height:1.7;
+}
+
+.final-letter{
+    max-width:700px;
+    margin:60px auto;
+    padding:30px;
+    border:2px solid gold;
+    border-radius:25px;
+    background:rgba(255,255,255,0.05);
+    line-height:2;
+    color:white;
+}
+
+.final-quote{
+    text-align:center;
+    margin-top:50px;
+    color:#ffd700;
+    font-style:italic;
+    font-size:20px;
+}
+
+/* Visor pantalla completa */
+
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.95);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.lightbox.active{
+    display:flex;
+}
+
+.lightbox img{
+    max-width:90%;
+    max-height:90%;
+    border:3px solid gold;
+    border-radius:20px;
+}
+
+.close-lightbox{
+    position:absolute;
+    top:20px;
+    right:25px;
+    font-size:40px;
+    color:white;
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>El Jardín Celestial</h1>
+
+<p>🌳 Árbol de los Gracias</p>
+
+<div class="tree">
+
+<div class="leaf" onclick="memory(1)">🍃</div>
+<div class="leaf" onclick="memory(2)">🍃</div>
+<div class="leaf" onclick="memory(3)">🍃</div>
+<div class="leaf" onclick="memory(4)">🍃</div>
+<div class="leaf" onclick="memory(5)">🍃</div>
+<div class="leaf" onclick="memory(6)">🍃</div>
+<div class="leaf" onclick="memory(7)">🍃</div>
+<div class="leaf" onclick="memory(8)">🍃</div>
+
+</div>
+
+<div id="memoryBox"></div>
+
+<script>
+
+function memory(i){
+
+const m = [
+"Mes 1 💜: sin saberlo, ya eras importante",
+"Mes 2 🌙: hablar contigo era mi momento favorito",
+"Mes 3 ✨: ya te pensaba sin darme cuenta",
+"Mes 4 🏡: contigo todo se sentía hogar",
+"Mes 5 💫: empezabas a ser indispensable",
+"Mes 6 🌸: ya eras parte de mis planes",
+"Mes 7 💛: entendí lo que sentía",
+"Mes 8 🌌: y aquí seguimos… creciendo juntos"
+];
+
+document.getElementById("memoryBox").innerText = m[i-1];
+
+}
+
+</script>
+    
+<div class="section">
+
+<h2 style="text-align:center;">🌊 Lago de los Deseos</h2>
+
+<p style="text-align:center;">Toca el agua y deja que el jardín escuche 🌙</p>
+
+<div class="lake" onclick="wish(event)"></div>
+
+<div id="wishBox"></div>
+<script>
+
+function wish(e){
+
+const box = document.getElementById("wishBox");
+
+const wishes = [
+"El jardín escucha tu corazón...",
+"Tu deseo viaja entre estrellas 🌌",
+"El amor responde en silencio 💜",
+"Algo hermoso se está formando ✨",
+"El universo ya lo sabe..."
+];
+
+box.innerText = wishes[Math.floor(Math.random()*wishes.length)];
+
+/* efecto ripple */
+const r = document.createElement("div");
+r.classList.add("ripple");
+
+r.style.left = e.offsetX + "px";
+r.style.top = e.offsetY + "px";
+
+e.target.appendChild(r);
+
+setTimeout(() => r.remove(), 1200);
+
+}
+
+</script>
+</div>
+    <div class="section">
+
+<h2 style="text-align:center;">🌸 Ocho Flores Eternas</h2>
+
+<p style="text-align:center;">Cada flor es una etapa de nuestro amor 💜</p>
+
+<div class="flowers">
+
+<div onclick="flower(1)">🌸</div>
+<div onclick="flower(2)">🌸</div>
+<div onclick="flower(3)">🌸</div>
+<div onclick="flower(4)">🌸</div>
+<div onclick="flower(5)">🌸</div>
+<div onclick="flower(6)">🌸</div>
+<div onclick="flower(7)">🌸</div>
+<div onclick="flower(8)">🌸</div>
+
+</div>
+
+<div id="flowerBox"></div>
+<script>
+
+function flower(i){
+
+const f = [
+"Flor 1 🌸: todo comenzó sin saberlo",
+"Flor 2 🌸: te volviste especial",
+"Flor 3 🌸: ya había cariño real",
+"Flor 4 🌸: empezaste a ser hogar",
+"Flor 5 🌸: amor creciendo en silencio",
+"Flor 6 🌸: conexión profunda",
+"Flor 7 🌸: amor consciente",
+"Flor 8 🌸: eternidad contigo 💜"
+];
+
+document.getElementById("flowerBox").innerText = f[i-1];
+
+}
+
+</script>
+    </div> 
+    <div id="sky"></div>
+    <script>
+
+const sky = document.getElementById("sky");
+
+function createButterflies(){
+
+for(let i=0;i<15;i++){
+
+    const b = document.createElement("div");
+    b.classList.add("butterfly");
+    b.innerText = "🦋";
+
+    b.style.left = Math.random()*100 + "vw";
+    b.style.animationDuration = (8 + Math.random()*8) + "s";
+    b.style.fontSize = (16 + Math.random()*20) + "px";
+    b.style.opacity = Math.random();
+
+    sky.appendChild(b);
+
+}
+
+}
+
+createButterflies();
+
+    </script>
+    <div class="stars-section">
+
+    <h2>🌌 Sala de las Estrellas</h2>
+
+    <p>Cuando el jardín calla… el universo habla 💜</p>
+
+    <div id="stars"></div>
+
+    <div class="final-message">
+        "Todo lo que somos, está escrito en estas estrellas."
+    </div>
+<script>
+
+const starsContainer = document.getElementById("stars");
+
+function createStars(){
+
+for(let i=0;i<60;i++){
+
+    const s = document.createElement("div");
+    s.classList.add("star");
+
+    s.style.left = Math.random()*100 + "%";
+    s.style.top = Math.random()*100 + "%";
+    s.style.animationDuration = (2 + Math.random()*3) + "s";
+
+    starsContainer.appendChild(s);
+
+}
+
+}
+
+createStars();
+
+</script>
+    </div>
+    <div class="time-section">
+
+    <h2>⏳ Reloj Suspendido</h2>
+
+    <p>El tiempo se detuvo en el momento en que todo comenzó...</p>
+
+    <div class="clock">
+        17 / 10 / 2025
+    </div>
+
+    <div id="timeMessage"></div>
+<script>
+
+const timeMessage = document.getElementById("timeMessage");
+
+const messages = [
+"El amor detuvo el tiempo aquí...",
+"No fue un día cualquiera...",
+"Fue el inicio de todo lo que somos 💜",
+"Y desde entonces, nada volvió a ser igual 🌙"
+];
+
+let i = 0;
+
+function rotateTimeMessage(){
+
+timeMessage.innerText = messages[i];
+
+i = (i + 1) % messages.length;
+
+}
+
+setInterval(rotateTimeMessage, 3000);
+
+rotateTimeMessage();
+
+</script>
+    </div>
+    <!-- ===== TRANSICIÓN ===== -->
+
+<div class="heart-transition">
+
+    <h2>✨ El corazón del jardín...</h2>
+
+    <p>
+        No todos los caminos conducen a un destino.
+    </p>
+
+    <p>
+        Algunos conducen a una persona.
+    </p>
+
+    <p>
+        Bienvenida al Santuario Final, Valeria.
+    </p>
+
+</div>
+
+
+<!-- ===== SANTUARIO ===== -->
+
+<div class="sanctuary">
+
+    <h2>💎 Santuario Final</h2>
+
+    <p class="sanctuary-subtitle">
+        Has recorrido cada rincón de este jardín.
+        Has escuchado el susurro de las estrellas,
+        tocado las flores que representan nuestra historia
+        y dejado tus deseos sobre el lago que guarda nuestros sueños.
+    </p>
+
+
+    <!-- NOSOTROS -->
+
+    <h3 class="section-title">💕 Nosotros</h3>
+
+    <p class="section-text">
+        Cada recuerdo contigo convirtió lo cotidiano en extraordinario.
+    </p>
+
+    <div class="gallery">
+
+        <img src="IMG-20250919-WA0008.jpeg" onclick="openLightbox(this.src)">
+
+        <img src="IMG-20251014-WA0017.jpeg" onclick="openLightbox(this.src)">
+
+    </div>
+
+
+    <!-- VALERIA -->
+
+    <h3 class="section-title">
+        🌷 La mujer que cambió mi mundo
+    </h3>
+
+    <p class="section-text">
+        Entre todas las personas que he conocido,
+        hubo una que convirtió mis días comunes
+        en recuerdos extraordinarios.
+    </p>
+
+    <div class="gallery">
+
+        <img src="IMG-20260412-WA0009.jpg" onclick="openLightbox(this.src)">
+
+        <img src="IMG-20251014-WA0022.jpg" onclick="openLightbox(this.src)">
+
+        <img src="IMG-20251123-WA0027.jpg" onclick="openLightbox(this.src)">
+
+        <img src="IMG_20250919_165157.jpg" onclick="openLightbox(this.src)">
+
+        <img src="att.M0w-KphDCJHdzXIjOZEm3u4wyfKgESitYhKNE8PRt7w.jpg.jpeg"
+             onclick="openLightbox(this.src)">
+
+        <img src="IMG-20260612-WA0022.jpg"
+             onclick="openLightbox(this.src)">
+
+    </div>
+
+
+    <!-- PROMESA -->
+
+    <div class="final-letter">
+
+        <p>
+            Gracias por tu apoyo en mis momentos difíciles.
+            Gracias por tu paciencia cuando no sé expresar lo que siento
+            o cuando mis inseguridades aparecen.
+            Gracias por tu lealtad.
+        </p>
+
+        <p>
+            De todos nuestros recuerdos,
+            guardaré para siempre las salidas al cine,
+            las conversaciones hermosas y cada instante
+            en el que el tiempo parecía detenerse
+            solo porque estabas conmigo.
+        </p>
+
+        <p>
+            Y hoy quiero hacerte una promesa.
+        </p>
+
+        <p>
+            Vas a ser la persona que muchos envidien
+            por tener a alguien dispuesto a apoyarte en todo,
+            a cuidarte y a luchar cada día por hacerte feliz.
+        </p>
+
+        <p>
+            Pero, por encima de todo,
+            prometo llevarte al altar y jurar
+            ante el infinito del universo
+            que eres la mujer más importante de mi vida,
+            la persona a la que más amo
+            en todas mis realidades.
+        </p>
+
+        <p>
+            Si pudiera volver al 17 de octubre de 2025,
+            volvería a elegirte una y otra vez.
+        </p>
+
+        <p>
+            Porque entre miles de millones de personas,
+            entre todas las estrellas que existen
+            y todos los caminos posibles,
+            siempre volvería a encontrarte a ti.
+        </p>
+
+        <p>
+            Con todo mi amor,
+        </p>
+
+        <p>
+            Juan Kaleth Mendoza Primera.
+        </p>
+
+    </div>
+
+
+    <div class="final-quote">
+
+        ✨ "Y si el universo me diera infinitas vidas,
+        en cada una de ellas volvería a buscarte
+        para amarte otra vez."
+
+        <br><br>
+
+        17 de octubre de 2025 ♾️ 17 de junio de 2026
+
+        <br>
+
+        8 meses construyendo nuestro para siempre.
+
+    </div>
+
+</div>
+
+
+<!-- VISOR -->
+
+<div class="lightbox" id="lightbox">
+
+    <span class="close-lightbox"
+          onclick="closeLightbox()">
+        ×
+    </span>
+
+    <img id="lightboxImg">
+
+</div>
+    <script>
+
+/* ===== VISOR DEL SANTUARIO ===== */
+
+function openLightbox(src){
+
+    const lightbox = document.getElementById("lightbox");
+    const img = document.getElementById("lightboxImg");
+
+    img.src = src;
+
+    lightbox.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+}
+
+function closeLightbox(){
+
+    const lightbox = document.getElementById("lightbox");
+
+    lightbox.classList.remove("active");
+
+    document.body.style.overflow = "auto";
+
+}
+
+/* Cerrar tocando fuera de la imagen */
+
+document.getElementById("lightbox").addEventListener("click", function(e){
+
+    if(e.target === this){
+
+        closeLightbox();
+
+    }
+
+});
+
+        </script>
+</body>
+          </html> 
