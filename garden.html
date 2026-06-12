@@ -129,6 +129,37 @@ p{
     margin-left:auto;
     margin-right:auto;
 } 
+    .flowers-section{
+    margin-top:60px;
+    text-align:center;
+}
+
+.flowers{
+    display:grid;
+    grid-template-columns:repeat(4,60px);
+    gap:15px;
+    justify-content:center;
+    margin-top:20px;
+}
+
+.flower{
+    font-size:40px;
+    cursor:pointer;
+    transition:0.3s;
+    filter:drop-shadow(0 0 6px #ffccff);
+}
+
+.flower:hover{
+    transform:scale(1.3) rotate(10deg);
+}
+
+#flowerText{
+    margin-top:20px;
+    color:#ffd700;
+    max-width:420px;
+    margin-left:auto;
+    margin-right:auto;
+}
 </style>
 
 </head>
@@ -170,7 +201,28 @@ p{
     <div id="wishText"></div>
 
 </div>
-    
+<div class="flowers-section">
+
+    <h2>Las Ocho Flores del Amor</h2>
+
+    <p>Cada flor guarda una parte de nuestra historia 🌸</p>
+
+    <div class="flowers">
+
+        <div class="flower" onclick="showFlower(1)">🌸</div>
+        <div class="flower" onclick="showFlower(2)">🌸</div>
+        <div class="flower" onclick="showFlower(3)">🌸</div>
+        <div class="flower" onclick="showFlower(4)">🌸</div>
+        <div class="flower" onclick="showFlower(5)">🌸</div>
+        <div class="flower" onclick="showFlower(6)">🌸</div>
+        <div class="flower" onclick="showFlower(7)">🌸</div>
+        <div class="flower" onclick="showFlower(8)">🌸</div>
+
+    </div>
+
+    <div id="flowerText"></div>
+
+</div> 
 <script>
 
 function showMemory(id){
@@ -189,9 +241,6 @@ function showMemory(id){
     document.getElementById("memoryBox").innerText = memories[id];
 
 }
-
-        </script>
-    <script>
 
 const lake = document.getElementById("lake");
 const wishText = document.getElementById("wishText");
@@ -229,6 +278,25 @@ lake.addEventListener("click", (e) => {
     }
 
 });
+
+function showFlower(id){
+
+    const flowers = {
+        1: "Mes 1 🌸: Todo comenzó sin saber lo importante que serías en mi vida",
+        2: "Mes 2 🌸: Empezaste a ser mi pensamiento favorito del día",
+        3: "Mes 3 🌸: Ya no eras una opción… eras una certeza",
+        4: "Mes 4 🌸: Contigo descubrí lo que significa tranquilidad",
+        5: "Mes 5 🌸: El amor contigo dejó de ser miedo y se volvió hogar",
+        6: "Mes 6 🌸: Empecé a imaginarte en todos mis futuros",
+        7: "Mes 7 🌸: Ya no era costumbre… era amor consciente",
+        8: "Mes 8 🌸: Y aquí estamos… eligiéndonos sin dudarlo 🌙💜"
+    };
+
+    const text = document.getElementById("flowerText");
+
+    text.innerText = flowers[id];
+
+}
 
     </script>
 </body>
