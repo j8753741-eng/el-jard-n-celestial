@@ -38,21 +38,6 @@ p{
     line-height:1.6;
 }
 
-button{
-    margin-top:25px;
-    padding:14px 25px;
-    border:none;
-    border-radius:30px;
-    background:#6f42c1;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-}
-
-button:hover{
-    transform:scale(1.05);
-}
-
 .stars{
     position:fixed;
     inset:0;
@@ -74,5 +59,88 @@ button:hover{
     100%{
         transform:translateY(0px);
     }
-} 
-Ñ
+}
+
+/* Fondo oscuro */
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    opacity:0;
+    pointer-events:none;
+    transition:.4s;
+}
+
+/* Ventana celestial */
+.modal{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%) scale(.8);
+
+    width:85%;
+    max-width:420px;
+
+    background:rgba(30,15,50,.9);
+
+    border:2px solid rgba(255,215,0,.5);
+
+    border-radius:25px;
+
+    padding:30px 25px;
+
+    text-align:center;
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+        0 0 30px rgba(255,215,0,.25),
+        0 0 50px rgba(111,66,193,.25);
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:.4s;
+
+    z-index:1000;
+}
+
+.modal h2{
+    color:#FFD700;
+}
+
+.coming-soon{
+    color:#FFD700;
+    margin-top:20px;
+}
+
+/* Botón cerrar */
+.close-btn{
+    position:absolute;
+
+    top:12px;
+    right:15px;
+
+    background:none;
+
+    border:none;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+}
+
+/* Mostrar ventana */
+.overlay.show{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.modal.show{
+    opacity:1;
+    pointer-events:auto;
+
+    transform:translate(-50%, -50%) scale(1);
+}
