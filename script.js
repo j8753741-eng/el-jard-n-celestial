@@ -48,5 +48,20 @@ btn.addEventListener("click", () => {
 });
 
 enterBtn.addEventListener("click", () => {
-    alert("Aquí empieza el Jardín Celestial 🌸");
+
+    document.body.style.transition = "all 2s ease";
+    document.body.style.background = "#000";
+
+    msg.innerHTML = "Abriendo el Jardín Celestial...";
+
+    modal.style.transition = "all 2s ease";
+    modal.style.opacity = "0";
+    modal.style.transform = "translate(-50%,-50%) scale(0.5)";
+
+    overlay.style.opacity = "0";
+
+    setTimeout(() => {
+        window.location.href = "garden.html";
+    }, 2500);
+
 });
