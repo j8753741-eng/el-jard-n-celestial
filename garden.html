@@ -9,97 +9,92 @@
 
 body{
     margin:0;
-    background: radial-gradient(circle at top, #1a0b2e, black);
-    color:white;
     font-family:Arial;
-    overflow:hidden;
+    background: radial-gradient(circle at top, #1a0b2e, #000);
+    color:white;
+    overflow-x:hidden;
 }
 
-.center{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
+/* brillo mágico de fondo */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255,215,0,0.08), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(147,112,219,0.08), transparent 40%);
+    animation:glow 8s infinite alternate;
+    pointer-events:none;
+}
+
+@keyframes glow{
+    from{opacity:0.4;}
+    to{opacity:0.8;}
+}
+
+/* título */
+h1,h2{
     text-align:center;
-    padding:20px;
-}
-
-h1{
-    color:#ffd700;
-    font-size:2rem;
+    animation:fadeIn 1.5s ease;
 }
 
 p{
-    color:#c9a7ff;
-    max-width:500px;
+    text-align:center;
+    animation:fadeIn 2s ease;
 }
 
-.floating{
-    position:absolute;
-    width:100%;
-    height:100%;
-    overflow:hidden;
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
-.particle{
-    position:absolute;
-    width:6px;
-    height:6px;
-    background:gold;
-    border-radius:50%;
-    animation:float 6s linear infinite;
+/* contenedor general */
+.section{
+    margin-top:40px;
+    padding:10px;
 }
 
-@keyframes float{
-    from{transform:translateY(100vh); opacity:1;}
-    to{transform:translateY(-10vh); opacity:0;}
+/* animación aparición */
+.appear{
+    animation:pop 1.2s ease;
 }
 
-    .tree{
-    margin-top:30px;
+@keyframes pop{
+    from{opacity:0; transform:scale(0.8);}
+    to{opacity:1; transform:scale(1);}
+}
+
+/* ÁRBOL */
+.tree{
     display:grid;
-    grid-template-columns:repeat(4, 60px);
-    gap:15px;
+    grid-template-columns:repeat(4,60px);
+    gap:10px;
     justify-content:center;
+    margin-top:20px;
 }
 
-.leaf{
+.tree div{
     font-size:40px;
     cursor:pointer;
     transition:0.3s;
+}
+
+.tree div:hover{
+    transform:scale(1.3);
     filter:drop-shadow(0 0 5px gold);
 }
 
-.leaf:hover{
-    transform:scale(1.3);
-}
-
-#memoryBox{
-    margin-top:25px;
-    padding:15px;
-    border:1px solid gold;
-    border-radius:15px;
-    min-height:60px;
-    color:#ffd700;
-    max-width:400px;
-}
-    .lake-section{
-    margin-top:60px;
-    text-align:center;
-}
-
+/* LAGO */
 .lake{
-    width:220px;
-    height:220px;
+    width:200px;
+    height:200px;
     margin:20px auto;
     border-radius:50%;
-    background: radial-gradient(circle at center, #1a0b2e, #000);
+    background: radial-gradient(circle, #0a0a1a, #000);
     border:2px solid gold;
+    cursor:pointer;
     position:relative;
     overflow:hidden;
-    cursor:pointer;
-    box-shadow:0 0 25px rgba(255,215,0,0.3);
 }
 
 .ripple{
@@ -112,271 +107,172 @@ p{
 }
 
 @keyframes ripple{
-    from{
-        transform:scale(1);
-        opacity:1;
-    }
-    to{
-        transform:scale(10);
-        opacity:0;
-    }
+    from{transform:scale(1); opacity:1;}
+    to{transform:scale(10); opacity:0;}
 }
 
-#wishText{
-    margin-top:20px;
-    color:#ffd700;
-    max-width:400px;
-    margin-left:auto;
-    margin-right:auto;
-} 
-    .flowers-section{
-    margin-top:60px;
-    text-align:center;
-}
-
+/* FLORES */
 .flowers{
     display:grid;
     grid-template-columns:repeat(4,60px);
-    gap:15px;
+    gap:10px;
     justify-content:center;
     margin-top:20px;
 }
 
-.flower{
+.flowers div{
     font-size:40px;
     cursor:pointer;
     transition:0.3s;
-    filter:drop-shadow(0 0 6px #ffccff);
 }
 
-.flower:hover{
+.flowers div:hover{
     transform:scale(1.3) rotate(10deg);
+    filter:drop-shadow(0 0 5px #ffccff);
 }
 
-#flowerText{
+/* textos */
+.box{
     margin-top:20px;
+    text-align:center;
     color:#ffd700;
     max-width:420px;
     margin-left:auto;
     margin-right:auto;
-}
-    h1, h2{
-    animation:fadeIn 1.5s ease forwards;
+    padding:10px;
 }
 
-p{
-    animation:fadeIn 2s ease forwards;
-}
-
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(10px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-    .tree, .lake, .flowers{
-    animation:popIn 1.2s ease forwards;
-}
-
-@keyframes popIn{
-    from{
-        opacity:0;
-        transform:scale(0.8);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-    #floatLayer{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    overflow:hidden;
-}
-
-.spark{
-    position:absolute;
-    width:6px;
-    height:6px;
-    background:gold;
-    border-radius:50%;
-    opacity:0.6;
-    animation:rise 6s linear infinite;
-}
-
-@keyframes rise{
-    from{
-        transform:translateY(100vh);
-        opacity:0;
-    }
-    to{
-        transform:translateY(-10vh);
-        opacity:0;
-    }
-}
 </style>
 
 </head>
-    
-<div id="floatLayer"></div>
-    
+
 <body>
 
-<div class="floating" id="particles"></div>
+<h1>El Jardín Celestial</h1>
 
-<div class="center">
+<p>Donde los recuerdos, deseos y el amor viven 🌙💜</p>
 
-    <h1>El Árbol de nuestros recuerdos</h1>
+---
 
-    <p>Haz clic en cada hoja para recordar nuestro camino 🌙</p>
+<!-- 🌳 ÁRBOL -->
+<div class="section appear">
 
-    <div class="tree">
+<h2>Árbol de los recuerdos</h2>
 
-        <div class="leaf" onclick="showMemory('1')">🍃</div>
-        <div class="leaf" onclick="showMemory('2')">🍃</div>
-        <div class="leaf" onclick="showMemory('3')">🍃</div>
-        <div class="leaf" onclick="showMemory('4')">🍃</div>
-        <div class="leaf" onclick="showMemory('5')">🍃</div>
-        <div class="leaf" onclick="showMemory('6')">🍃</div>
-        <div class="leaf" onclick="showMemory('7')">🍃</div>
-        <div class="leaf" onclick="showMemory('8')">🍃</div>
+<div class="tree">
+    <div onclick="memory(1)">🍃</div>
+    <div onclick="memory(2)">🍃</div>
+    <div onclick="memory(3)">🍃</div>
+    <div onclick="memory(4)">🍃</div>
+    <div onclick="memory(5)">🍃</div>
+    <div onclick="memory(6)">🍃</div>
+    <div onclick="memory(7)">🍃</div>
+    <div onclick="memory(8)">🍃</div>
+</div>
 
-    </div>
-
-    <div id="memoryBox"></div>
+<div id="memoryBox" class="box"></div>
 
 </div>
-    <div id="floatLayer"></div>
-<div class="lake-section">
 
-    <h2>El Lago de los Deseos</h2>
+---
 
-    <p>Toca el agua… y deja que el jardín escuche tu corazón 🌊</p>
+<!-- 🌊 LAGO -->
+<div class="section appear">
 
-    <div class="lake" id="lake"></div>
+<h2>Lago de los deseos</h2>
 
-    <div id="wishText"></div>
+<div class="lake" onclick="wish(event)"></div>
+
+<div id="wishBox" class="box"></div>
 
 </div>
-    <div id="floatLayer"></div>
-<div class="flowers-section">
 
-    <h2>Las Ocho Flores del Amor</h2>
+---
 
-    <p>Cada flor guarda una parte de nuestra historia 🌸</p>
+<!-- 🌸 FLORES -->
+<div class="section appear">
 
-    <div class="flowers">
+<h2>Ocho flores del amor</h2>
 
-        <div class="flower" onclick="showFlower(1)">🌸</div>
-        <div class="flower" onclick="showFlower(2)">🌸</div>
-        <div class="flower" onclick="showFlower(3)">🌸</div>
-        <div class="flower" onclick="showFlower(4)">🌸</div>
-        <div class="flower" onclick="showFlower(5)">🌸</div>
-        <div class="flower" onclick="showFlower(6)">🌸</div>
-        <div class="flower" onclick="showFlower(7)">🌸</div>
-        <div class="flower" onclick="showFlower(8)">🌸</div>
+<div class="flowers">
+    <div onclick="flower(1)">🌸</div>
+    <div onclick="flower(2)">🌸</div>
+    <div onclick="flower(3)">🌸</div>
+    <div onclick="flower(4)">🌸</div>
+    <div onclick="flower(5)">🌸</div>
+    <div onclick="flower(6)">🌸</div>
+    <div onclick="flower(7)">🌸</div>
+    <div onclick="flower(8)">🌸</div>
+</div>
 
-    </div>
+<div id="flowerBox" class="box"></div>
 
-    <div id="flowerText"></div>
+</div>
 
-</div> 
 <script>
 
-function showMemory(id){
+/* 🌳 recuerdos */
+function memory(i){
 
-    const memories = {
-        1: "Mes 1: Cuando todo empezó a sentirse especial contigo 💜",
-        2: "Mes 2: Descubrimos que hablar contigo era mi parte favorita del día 🌙",
-        3: "Mes 3: Ya no eras solo alguien… eras mi persona ✨",
-        4: "Mes 4: Cada momento contigo empezaba a sentirse hogar 🏡",
-        5: "Mes 5: Me di cuenta de que te elegía sin pensarlo 💫",
-        6: "Mes 6: Ya eras parte de mis planes sin darte cuenta 🌸",
-        7: "Mes 7: El amor contigo dejó de ser duda y se volvió certeza 💛",
-        8: "Mes 8: Y aquí estamos… construyendo algo que quiero para siempre 🌌"
-    };
-
-    document.getElementById("memoryBox").innerText = memories[id];
-
-}
-
-const lake = document.getElementById("lake");
-const wishText = document.getElementById("wishText");
-
-let clickCount = 0;
-
-const wishes = [
-    "El jardín escucha tu corazón...",
-    "Cada deseo que nace aquí florece en el universo ✨",
-    "Este lugar guarda todo lo que no dijimos en palabras 💜",
-    "Si el amor tiene forma, es este momento 🌙",
-    "Tu deseo ha sido recibido entre estrellas doradas 🌌"
+const m=[
+"Mes 1 💜: todo comenzó sin saberlo",
+"Mes 2 🌙: empezaste a ser mi rutina favorita",
+"Mes 3 ✨: ya eras alguien importante",
+"Mes 4 🏡: contigo todo era calma",
+"Mes 5 💫: sin darte cuenta te elegía",
+"Mes 6 🌸: ya eras parte de mis planes",
+"Mes 7 💛: entendí que era amor real",
+"Mes 8 🌌: y aquí seguimos… juntos"
 ];
 
-lake.addEventListener("click", (e) => {
-
-    clickCount++;
-
-    const ripple = document.createElement("div");
-    ripple.classList.add("ripple");
-
-    ripple.style.left = e.offsetX + "px";
-    ripple.style.top = e.offsetY + "px";
-
-    lake.appendChild(ripple);
-
-    setTimeout(() => {
-        ripple.remove();
-    }, 1200);
-
-    if(clickCount <= wishes.length){
-        wishText.innerText = wishes[clickCount - 1];
-    } else {
-        wishText.innerText = "El jardín ya ha escuchado todos tus deseos 💛";
-    }
-
-});
-
-function showFlower(id){
-
-    const flowers = {
-        1: "Mes 1 🌸: Todo comenzó sin saber lo importante que serías en mi vida",
-        2: "Mes 2 🌸: Empezaste a ser mi pensamiento favorito del día",
-        3: "Mes 3 🌸: Ya no eras una opción… eras una certeza",
-        4: "Mes 4 🌸: Contigo descubrí lo que significa tranquilidad",
-        5: "Mes 5 🌸: El amor contigo dejó de ser miedo y se volvió hogar",
-        6: "Mes 6 🌸: Empecé a imaginarte en todos mis futuros",
-        7: "Mes 7 🌸: Ya no era costumbre… era amor consciente",
-        8: "Mes 8 🌸: Y aquí estamos… eligiéndonos sin dudarlo 🌙💜"
-    };
-
-    const text = document.getElementById("flowerText");
-
-    text.innerText = flowers[id];
+document.getElementById("memoryBox").innerText=m[i-1];
 
 }
 
+/* 🌊 deseos */
+function wish(e){
 
-const layer = document.getElementById("floatLayer");
+const box=document.getElementById("wishBox");
 
-for(let i=0;i<25;i++){
+const texts=[
+"El jardín escucha tu corazón...",
+"Tu deseo viaja entre estrellas 🌌",
+"El amor responde en silencio 💜",
+"Algo hermoso se está formando ✨"
+];
 
-    const s = document.createElement("div");
-    s.classList.add("spark");
+box.innerText=texts[Math.floor(Math.random()*texts.length)];
 
-    s.style.left = Math.random()*100 + "vw";
-    s.style.animationDuration = (4 + Math.random()*4) + "s";
-    s.style.opacity = Math.random();
+/* ripple */
+const r=document.createElement("div");
+r.classList.add("ripple");
+r.style.left=e.offsetX+"px";
+r.style.top=e.offsetY+"px";
+e.target.appendChild(r);
 
-    layer.appendChild(s);
+setTimeout(()=>r.remove(),1200);
+
 }
 
+/* 🌸 flores */
+function flower(i){
 
-    </script>
+const f=[
+"Flor 1 🌸: amor nuevo",
+"Flor 2 🌸: emoción pura",
+"Flor 3 🌸: estabilidad",
+"Flor 4 🌸: cariño profundo",
+"Flor 5 🌸: confianza",
+"Flor 6 🌸: conexión",
+"Flor 7 🌸: amor real",
+"Flor 8 🌸: eternidad 💜"
+];
+
+document.getElementById("flowerBox").innerText=f[i-1];
+
+}
+
+</script>
+
 </body>
 </html>
