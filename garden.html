@@ -865,7 +865,94 @@ function toggleLatidos(){
 
     gallery.classList.toggle("show");
 
+    if(gallery.classList.contains("show")){
+        cargarLatidos();
+    }
+
 }
+const latidos = [
+
+"IMG-20251014-WA0023.jpg",
+"IMG-20251014-WA0022.jpg",
+"IMG-20251014-WA0021.jpg",
+"IMG-20250919-WA0008.jpeg",
+"IMG-20251014-WA0017.jpeg",
+"IMG-20251014-WA0024.jpg",
+"IMG-20251014-WA0025.jpg",
+"IMG-20251031-WA0022.jpg",
+"IMG-20251031-WA0023.jpg",
+"IMG-20251031-WA0024.jpg",
+"IMG-20251031-WA0026.jpg",
+"IMG-20251102-WA0006.jpg",
+"IMG-20251103-WA0007.jpg",
+"IMG-20251109-WA0016.jpg",
+"IMG-20251112-WA0028.jpg",
+"IMG-20251115-WA0001.jpg",
+"IMG-20251123-WA0017.jpg",
+"IMG-20251123-WA0027.jpg",
+"IMG-20260109-WA0014.jpg",
+"IMG-20260105-WA0016.jpg",
+"IMG-20260102-WA0017.jpg",
+"IMG-20251223-WA0033.jpg",
+"IMG-20251223-WA0032.jpg",
+"IMG-20251223-WA0031.jpg",
+"IMG-20251221-WA0025.jpg",
+"IMG-20251221-WA0009.jpg",
+"IMG-20251219-WA0033.jpg",
+"IMG-20251218-WA0023.jpg",
+"IMG-20251218-WA0022.jpg",
+"IMG-20251218-WA0004.jpg",
+"IMG-20251203-WA0005.jpg",
+"IMG-20251129-WA0019.jpg",
+"IMG-20251126-WA0002.jpg",
+"IMG-20251123-WA0028.jpg",
+"IMG-20251123-WA0029.jpg",
+"att.LOksMWVVnrtHgih1OmGXnwd_MhxhvKh-V56TeJgsk4A.jpg.jpeg",
+"att.KcoL1o62stSiQmKnvIsHTt5D450auDTVcYMLW_aFB8Q.jpg.jpeg",
+"Messenger_creation_ABDD89B2-10D1-4936-91F3-F2F62794C935.jpeg",
+"IMG_20260513_161351.jpg",
+"IMG_20251107_100125.jpg",
+"IMG_20251014_145928.jpg",
+"IMG_20250919_165157.jpg",
+"IMG_20250919_164807.jpg",
+"IMG_20250919_164603.jpg",
+"IMG-20260515-WA0013.jpg",
+"IMG-20260612-WA0022.jpg",
+"IMG-20260412-WA0009.jpg",
+"IMG-20260202-WA0012.jpg",
+"IMG-20260119-WA0057.jpg",
+"IMG-20260110-WA0007.jpg",
+"att.UakL4CG69tRAmlh1w2gvHrWu92t6IEc-Qh4n72IiS5U.jpg.jpeg",
+"att.QJo_IcE-Ovil1dyFpPDWKRCaSkBQlILBolZ2LMyrDic.jpg.jpeg",
+"att.MjcR6QfobgFAA3bR6yFYz51i1_v88oWmTbVibYyiiNo.jpg.jpeg",
+"att.M0w-KphDCJHdzXIjOZEm3u4wyfKgESitYhKNE8PRt7w.jpg.jpeg"
+
+];
+    function cargarLatidos(){
+
+    const grid = document.getElementById("latidosGrid");
+
+    if(grid.children.length > 0){
+        return;
+    }
+
+    const mezcladas = [...latidos].sort(() => Math.random() - 0.5);
+
+    mezcladas.forEach(foto => {
+
+        const img = document.createElement("img");
+
+        img.src = foto;
+
+        img.onclick = function(){
+            openLightbox(foto);
+        };
+
+        grid.appendChild(img);
+
+    });
+
+    }
         </script>
 </body>
 </html>
