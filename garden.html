@@ -138,6 +138,44 @@ h1,p{
         transform:translateY(-10vh) translateX(-20px);
     }
 }
+    .stars-section{
+    margin-top:80px;
+    text-align:center;
+    padding:20px;
+}
+
+#stars{
+    position:relative;
+    height:200px;
+    margin-top:20px;
+    overflow:hidden;
+}
+
+/* estrella */
+.star{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 3s infinite ease-in-out;
+    opacity:0.7;
+}
+
+@keyframes twinkle{
+    0%{opacity:0.2; transform:scale(1);}
+    50%{opacity:1; transform:scale(1.5);}
+    100%{opacity:0.2; transform:scale(1);}
+}
+
+.final-message{
+    margin-top:30px;
+    color:#ffd700;
+    font-size:18px;
+    max-width:420px;
+    margin-left:auto;
+    margin-right:auto;
+}
 </style>
 
 </head>
@@ -292,6 +330,41 @@ for(let i=0;i<15;i++){
 createButterflies();
 
     </script>
-    
+    <div class="stars-section">
+
+    <h2>🌌 Sala de las Estrellas</h2>
+
+    <p>Cuando el jardín calla… el universo habla 💜</p>
+
+    <div id="stars"></div>
+
+    <div class="final-message">
+        "Todo lo que somos, está escrito en estas estrellas."
+    </div>
+<script>
+
+const starsContainer = document.getElementById("stars");
+
+function createStars(){
+
+for(let i=0;i<60;i++){
+
+    const s = document.createElement("div");
+    s.classList.add("star");
+
+    s.style.left = Math.random()*100 + "%";
+    s.style.top = Math.random()*100 + "%";
+    s.style.animationDuration = (2 + Math.random()*3) + "s";
+
+    starsContainer.appendChild(s);
+
+}
+
+}
+
+createStars();
+
+</script>
+    </div>
 </body>
 </html>
