@@ -13,12 +13,12 @@
     <!-- Fondo estrellado -->
     <div class="stars"></div>
 
-    <!-- Contenido principal -->
+    <!-- Pantalla principal -->
     <main class="container">
 
         <div class="key-container">
 
-            <div class="key">
+            <div class="key" id="openModal">
                 🔑
             </div>
 
@@ -30,13 +30,35 @@
                 Toca la llave para descubrir lo que el universo ha guardado para ti...
             </p>
 
-    
-
         </div>
 
     </main>
 
+    <!-- Fondo oscuro -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Ventana celestial -->
+    <div class="modal" id="modal">
+
+        <button class="close-btn" id="closeModal">
+            ✕
+        </button>
+
+        <h2>
+            Bienvenida al umbral del Jardín Celestial
+        </h2>
+
+        <p>
+            Este lugar ha esperado pacientemente el momento exacto para revelarse.
+        </p>
+
+        <p class="coming-soon">
+            ✨ Nuestra melodía y la llave del destino aparecerán aquí muy pronto...
+        </p>
+
+    </div>
+
     <script src="script.js"></script>
 
 </body>
-</html> 
+</html>
