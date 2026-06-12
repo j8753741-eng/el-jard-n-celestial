@@ -176,6 +176,35 @@ h1,p{
     margin-left:auto;
     margin-right:auto;
 }
+    .time-section{
+    margin-top:80px;
+    text-align:center;
+    padding:20px;
+}
+
+.clock{
+    font-size:28px;
+    color:#ffd700;
+    border:2px solid gold;
+    display:inline-block;
+    padding:10px 20px;
+    border-radius:15px;
+    margin-top:20px;
+    animation:glowClock 3s infinite alternate;
+}
+
+@keyframes glowClock{
+    from{box-shadow:0 0 5px gold;}
+    to{box-shadow:0 0 20px gold;}
+}
+
+#timeMessage{
+    margin-top:20px;
+    color:#c9a7ff;
+    max-width:400px;
+    margin-left:auto;
+    margin-right:auto;
+}
 </style>
 
 </head>
@@ -366,5 +395,44 @@ createStars();
 
 </script>
     </div>
+    <div class="time-section">
+
+    <h2>⏳ Reloj Suspendido</h2>
+
+    <p>El tiempo se detuvo en el momento en que todo comenzó...</p>
+
+    <div class="clock">
+        17 / 10 / 2025
+    </div>
+
+    <div id="timeMessage"></div>
+<script>
+
+const timeMessage = document.getElementById("timeMessage");
+
+const messages = [
+"El amor detuvo el tiempo aquí...",
+"No fue un día cualquiera...",
+"Fue el inicio de todo lo que somos 💜",
+"Y desde entonces, nada volvió a ser igual 🌙"
+];
+
+let i = 0;
+
+function rotateTimeMessage(){
+
+timeMessage.innerText = messages[i];
+
+i = (i + 1) % messages.length;
+
+}
+
+setInterval(rotateTimeMessage, 3000);
+
+rotateTimeMessage();
+
+</script>
+    </div>
+    
 </body>
 </html>
