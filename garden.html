@@ -52,6 +52,38 @@ h1,p{
     min-height:60px;
 }
 
+    .lake{
+    width:200px;
+    height:200px;
+    margin:30px auto;
+    border-radius:50%;
+    background: radial-gradient(circle, #0a0a1a, #000);
+    border:2px solid gold;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.ripple{
+    position:absolute;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    border:2px solid gold;
+    animation:ripple 1.2s ease-out forwards;
+}
+
+@keyframes ripple{
+    from{transform:scale(1); opacity:1;}
+    to{transform:scale(10); opacity:0;}
+}
+
+#wishBox{
+    text-align:center;
+    margin-top:20px;
+    color:#ffd700;
+    min-height:40px;
+}
 </style>
 
 </head>
@@ -97,6 +129,46 @@ document.getElementById("memoryBox").innerText = m[i-1];
 }
 
 </script>
+    
+<div class="section">
 
+<h2 style="text-align:center;">🌊 Lago de los Deseos</h2>
+
+<p style="text-align:center;">Toca el agua y deja que el jardín escuche 🌙</p>
+
+<div class="lake" onclick="wish(event)"></div>
+
+<div id="wishBox"></div>
+<script>
+
+function wish(e){
+
+const box = document.getElementById("wishBox");
+
+const wishes = [
+"El jardín escucha tu corazón...",
+"Tu deseo viaja entre estrellas 🌌",
+"El amor responde en silencio 💜",
+"Algo hermoso se está formando ✨",
+"El universo ya lo sabe..."
+];
+
+box.innerText = wishes[Math.floor(Math.random()*wishes.length)];
+
+/* efecto ripple */
+const r = document.createElement("div");
+r.classList.add("ripple");
+
+r.style.left = e.offsetX + "px";
+r.style.top = e.offsetY + "px";
+
+e.target.appendChild(r);
+
+setTimeout(() => r.remove(), 1200);
+
+}
+
+</script>
+</div>
 </body>
 </html>
