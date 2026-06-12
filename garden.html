@@ -407,6 +407,42 @@ h1,p{
 .goodbye-message span{
     color:#c9a7ff;
 }
+    /* ===== REPRODUCTOR MUSICAL ===== */
+
+.music-player{
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 998;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(6px);
+    padding: 8px;
+    border-radius: 15px;
+    box-shadow: 0 0 12px rgba(255,215,0,0.3);
+}
+
+.music-player iframe{
+    width: 220px;
+    height: 124px;
+    border: none;
+    border-radius: 12px;
+}
+
+/* Ajuste para celulares pequeños */
+@media (max-width: 600px){
+
+    .music-player{
+        top: 10px;
+        right: 10px;
+        padding: 6px;
+    }
+
+    .music-player iframe{
+        width: 180px;
+        height: 101px;
+    }
+
+}
 </style>
 
 </head>
@@ -1045,5 +1081,15 @@ window.addEventListener("load", function(){
 
 });
         </script>
+    <div class="music-player">
+
+    <iframe
+        src="https://www.youtube.com/embed/SvrJFOL4V0I"
+        title="Nuestra canción"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+
+    </div>
 </body>
 </html>
