@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>El Jardín Celestial</title>
+<title>El Jardín Celestial - Fase 3</title>
 
 <style>
 
@@ -15,131 +15,41 @@ body{
     overflow-x:hidden;
 }
 
-/* brillo mágico de fondo */
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-        radial-gradient(circle at 20% 30%, rgba(255,215,0,0.08), transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(147,112,219,0.08), transparent 40%);
-    animation:glow 8s infinite alternate;
-    pointer-events:none;
-}
-
-@keyframes glow{
-    from{opacity:0.4;}
-    to{opacity:0.8;}
-}
-
 /* título */
-h1,h2{
+h1,p{
     text-align:center;
-    animation:fadeIn 1.5s ease;
 }
 
-p{
-    text-align:center;
-    animation:fadeIn 2s ease;
-}
-
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(10px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-/* contenedor general */
-.section{
-    margin-top:40px;
-    padding:10px;
-}
-
-/* animación aparición */
-.appear{
-    animation:pop 1.2s ease;
-}
-
-@keyframes pop{
-    from{opacity:0; transform:scale(0.8);}
-    to{opacity:1; transform:scale(1);}
-}
-
-/* ÁRBOL */
+/* árbol */
 .tree{
     display:grid;
-    grid-template-columns:repeat(4,60px);
-    gap:10px;
+    grid-template-columns:repeat(4,70px);
+    gap:15px;
     justify-content:center;
-    margin-top:20px;
+    margin-top:40px;
 }
 
-.tree div{
-    font-size:40px;
+.leaf{
+    font-size:42px;
     cursor:pointer;
     transition:0.3s;
+    filter:drop-shadow(0 0 6px gold);
 }
 
-.tree div:hover{
+.leaf:hover{
     transform:scale(1.3);
-    filter:drop-shadow(0 0 5px gold);
 }
 
-/* LAGO */
-.lake{
-    width:200px;
-    height:200px;
-    margin:20px auto;
-    border-radius:50%;
-    background: radial-gradient(circle, #0a0a1a, #000);
-    border:2px solid gold;
-    cursor:pointer;
-    position:relative;
-    overflow:hidden;
-}
-
-.ripple{
-    position:absolute;
-    width:20px;
-    height:20px;
-    border-radius:50%;
-    border:2px solid gold;
-    animation:ripple 1.2s ease-out forwards;
-}
-
-@keyframes ripple{
-    from{transform:scale(1); opacity:1;}
-    to{transform:scale(10); opacity:0;}
-}
-
-/* FLORES */
-.flowers{
-    display:grid;
-    grid-template-columns:repeat(4,60px);
-    gap:10px;
-    justify-content:center;
-    margin-top:20px;
-}
-
-.flowers div{
-    font-size:40px;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.flowers div:hover{
-    transform:scale(1.3) rotate(10deg);
-    filter:drop-shadow(0 0 5px #ffccff);
-}
-
-/* textos */
-.box{
-    margin-top:20px;
+/* caja de texto */
+#memoryBox{
+    margin-top:30px;
     text-align:center;
     color:#ffd700;
     max-width:420px;
     margin-left:auto;
     margin-right:auto;
     padding:10px;
+    min-height:60px;
 }
 
 </style>
@@ -150,125 +60,39 @@ p{
 
 <h1>El Jardín Celestial</h1>
 
-<p>Donde los recuerdos, deseos y el amor viven 🌙💜</p>
-
----
-
-<!-- 🌳 ÁRBOL -->
-<div class="section appear">
-
-<h2>Árbol de los recuerdos</h2>
+<p>🌳 Árbol de los Gracias</p>
 
 <div class="tree">
-    <div onclick="memory(1)">🍃</div>
-    <div onclick="memory(2)">🍃</div>
-    <div onclick="memory(3)">🍃</div>
-    <div onclick="memory(4)">🍃</div>
-    <div onclick="memory(5)">🍃</div>
-    <div onclick="memory(6)">🍃</div>
-    <div onclick="memory(7)">🍃</div>
-    <div onclick="memory(8)">🍃</div>
-</div>
 
-<div id="memoryBox" class="box"></div>
+<div class="leaf" onclick="memory(1)">🍃</div>
+<div class="leaf" onclick="memory(2)">🍃</div>
+<div class="leaf" onclick="memory(3)">🍃</div>
+<div class="leaf" onclick="memory(4)">🍃</div>
+<div class="leaf" onclick="memory(5)">🍃</div>
+<div class="leaf" onclick="memory(6)">🍃</div>
+<div class="leaf" onclick="memory(7)">🍃</div>
+<div class="leaf" onclick="memory(8)">🍃</div>
 
 </div>
 
----
-
-<!-- 🌊 LAGO -->
-<div class="section appear">
-
-<h2>Lago de los deseos</h2>
-
-<div class="lake" onclick="wish(event)"></div>
-
-<div id="wishBox" class="box"></div>
-
-</div>
-
----
-
-<!-- 🌸 FLORES -->
-<div class="section appear">
-
-<h2>Ocho flores del amor</h2>
-
-<div class="flowers">
-    <div onclick="flower(1)">🌸</div>
-    <div onclick="flower(2)">🌸</div>
-    <div onclick="flower(3)">🌸</div>
-    <div onclick="flower(4)">🌸</div>
-    <div onclick="flower(5)">🌸</div>
-    <div onclick="flower(6)">🌸</div>
-    <div onclick="flower(7)">🌸</div>
-    <div onclick="flower(8)">🌸</div>
-</div>
-
-<div id="flowerBox" class="box"></div>
-
-</div>
+<div id="memoryBox"></div>
 
 <script>
 
-/* 🌳 recuerdos */
 function memory(i){
 
-const m=[
-"Mes 1 💜: todo comenzó sin saberlo",
-"Mes 2 🌙: empezaste a ser mi rutina favorita",
-"Mes 3 ✨: ya eras alguien importante",
-"Mes 4 🏡: contigo todo era calma",
-"Mes 5 💫: sin darte cuenta te elegía",
+const m = [
+"Mes 1 💜: sin saberlo, ya eras importante",
+"Mes 2 🌙: hablar contigo era mi momento favorito",
+"Mes 3 ✨: ya te pensaba sin darme cuenta",
+"Mes 4 🏡: contigo todo se sentía hogar",
+"Mes 5 💫: empezabas a ser indispensable",
 "Mes 6 🌸: ya eras parte de mis planes",
-"Mes 7 💛: entendí que era amor real",
-"Mes 8 🌌: y aquí seguimos… juntos"
+"Mes 7 💛: entendí lo que sentía",
+"Mes 8 🌌: y aquí seguimos… creciendo juntos"
 ];
 
-document.getElementById("memoryBox").innerText=m[i-1];
-
-}
-
-/* 🌊 deseos */
-function wish(e){
-
-const box=document.getElementById("wishBox");
-
-const texts=[
-"El jardín escucha tu corazón...",
-"Tu deseo viaja entre estrellas 🌌",
-"El amor responde en silencio 💜",
-"Algo hermoso se está formando ✨"
-];
-
-box.innerText=texts[Math.floor(Math.random()*texts.length)];
-
-/* ripple */
-const r=document.createElement("div");
-r.classList.add("ripple");
-r.style.left=e.offsetX+"px";
-r.style.top=e.offsetY+"px";
-e.target.appendChild(r);
-
-setTimeout(()=>r.remove(),1200);
-
-}
-
-/* 🌸 flores */
-function flower(i){
-
-const f=[
-"Flor 1 🌸: amor nuevo",
-"Flor 2 🌸: emoción pura",
-"Flor 3 🌸: estabilidad",
-"Flor 4 🌸: cariño profundo",
-"Flor 5 🌸: confianza",
-"Flor 6 🌸: conexión",
-"Flor 7 🌸: amor real",
-"Flor 8 🌸: eternidad 💜"
-];
-
-document.getElementById("flowerBox").innerText=f[i-1];
+document.getElementById("memoryBox").innerText = m[i-1];
 
 }
 
