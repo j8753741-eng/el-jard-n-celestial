@@ -84,6 +84,51 @@ p{
     color:#ffd700;
     max-width:400px;
 }
+    .lake-section{
+    margin-top:60px;
+    text-align:center;
+}
+
+.lake{
+    width:220px;
+    height:220px;
+    margin:20px auto;
+    border-radius:50%;
+    background: radial-gradient(circle at center, #1a0b2e, #000);
+    border:2px solid gold;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    box-shadow:0 0 25px rgba(255,215,0,0.3);
+}
+
+.ripple{
+    position:absolute;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    border:2px solid gold;
+    animation:ripple 1.2s ease-out forwards;
+}
+
+@keyframes ripple{
+    from{
+        transform:scale(1);
+        opacity:1;
+    }
+    to{
+        transform:scale(10);
+        opacity:0;
+    }
+}
+
+#wishText{
+    margin-top:20px;
+    color:#ffd700;
+    max-width:400px;
+    margin-left:auto;
+    margin-right:auto;
+} 
 </style>
 
 </head>
@@ -92,7 +137,6 @@ p{
 
 <div class="floating" id="particles"></div>
 
-<div class="center">
 <div class="center">
 
     <h1>El Árbol de nuestros recuerdos</h1>
@@ -115,7 +159,18 @@ p{
     <div id="memoryBox"></div>
 
 </div>
+<div class="lake-section">
 
+    <h2>El Lago de los Deseos</h2>
+
+    <p>Toca el agua… y deja que el jardín escuche tu corazón 🌊</p>
+
+    <div class="lake" id="lake"></div>
+
+    <div id="wishText"></div>
+
+</div>
+    
 <script>
 
 function showMemory(id){
@@ -136,5 +191,45 @@ function showMemory(id){
 }
 
         </script>
+    <script>
+
+const lake = document.getElementById("lake");
+const wishText = document.getElementById("wishText");
+
+let clickCount = 0;
+
+const wishes = [
+    "El jardín escucha tu corazón...",
+    "Cada deseo que nace aquí florece en el universo ✨",
+    "Este lugar guarda todo lo que no dijimos en palabras 💜",
+    "Si el amor tiene forma, es este momento 🌙",
+    "Tu deseo ha sido recibido entre estrellas doradas 🌌"
+];
+
+lake.addEventListener("click", (e) => {
+
+    clickCount++;
+
+    const ripple = document.createElement("div");
+    ripple.classList.add("ripple");
+
+    ripple.style.left = e.offsetX + "px";
+    ripple.style.top = e.offsetY + "px";
+
+    lake.appendChild(ripple);
+
+    setTimeout(() => {
+        ripple.remove();
+    }, 1200);
+
+    if(clickCount <= wishes.length){
+        wishText.innerText = wishes[clickCount - 1];
+    } else {
+        wishText.innerText = "El jardín ya ha escuchado todos tus deseos 💛";
+    }
+
+});
+
+    </script>
 </body>
 </html>
